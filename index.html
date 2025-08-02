@@ -97,6 +97,14 @@
               <a href="#" data-category="Bangla Drama">Bangla Drama</a><a href="#" data-category="Urdu Drama">Urdu Drama</a><a href="#" data-category="Hindi Drama">Hindi Drama</a><a href="#" data-category="Turki Drama">Turkish Drama</a>
           </div>
       </div>
+      <!-- নতুন যোগ করা মেনু -->
+      <div class="nav-group">
+          <div class="nav-group-header">Cartoon & Anime <span class="arrow">▼</span></div>
+          <div class="nav-links">
+              <a href="#" data-category="Bangla Carton">Bangla Carton</a><a href="#" data-category="Hindi Carton">Hindi Carton</a><a href="#" data-category="English Carton">English Carton</a>
+          </div>
+      </div>
+      <!-- নতুন মেনু শেষ -->
       <a href="developer.html">🧑‍💻 About</a>
       <a href="#" data-category="Saved" id="saved-videos-link">🔖 Saved Videos</a>
   </nav>
@@ -141,8 +149,9 @@
     const navMenu = document.getElementById("nav-menu");
     const refreshButton = document.getElementById("refresh-button");
     
+    // categoryInfo অবজেক্টে নতুন ক্যাটাগরি যোগ করা হয়েছে
     const categoryInfo = {
-        All: "সকল ভিডিও", Saved: "🔖 আপনার সেভ করা ভিডিও", Hollywood: "Hollywood Movies", Bollywood: "Bollywood Movies", Tollywood: "Tollywood Movies", Dhallywood: "Dhallywood Movies", Kollywood: "Kollywood Movies", Mollywood: "Mollywood Movies", Lollywood: "Lollywood Movies", Chinawood: "Chinese Cinema", Nollywood: "Nollywood Movies", "K-Cinema": "Korean Cinema", "Turkish Cinema": "Turkish Cinema", "Bangla Drama": "Bangla Drama", "Urdu Drama": "Urdu Drama", "Hindi Drama": "Hindi Drama", "Turki Drama": "Turkish Drama"
+        All: "সকল ভিডিও", Saved: "🔖 আপনার সেভ করা ভিডিও", Hollywood: "Hollywood Movies", Bollywood: "Bollywood Movies", Tollywood: "Tollywood Movies", Dhallywood: "Dhallywood Movies", Kollywood: "Kollywood Movies", Mollywood: "Mollywood Movies", Lollywood: "Lollywood Movies", Chinawood: "Chinese Cinema", Nollywood: "Nollywood Movies", "K-Cinema": "Korean Cinema", "Turkish Cinema": "Turkish Cinema", "Bangla Drama": "Bangla Drama", "Urdu Drama": "Urdu Drama", "Hindi Drama": "Hindi Drama", "Turki Drama": "Turkish Drama", "Bangla Carton": "Bangla Carton", "Hindi Carton": "Hindi Carton", "English Carton": "English Carton"
     };
 
     const getStoredObject = key => { try { const item = localStorage.getItem(key); const parsed = JSON.parse(item || '{}'); return (typeof parsed === 'object' && !Array.isArray(parsed) && parsed !== null) ? parsed : {}; } catch (e) { return {}; } };
@@ -226,8 +235,7 @@
                 const thumb = e.currentTarget;
                 const playerDiv = document.createElement('div');
                 playerDiv.id = `player-${video.id}`;
-                // *** CRITICAL FIX HERE ***
-                playerDiv.className = 'video-player'; // This class applies the correct positioning
+                playerDiv.className = 'video-player';
                 thumb.innerHTML = ''; 
                 thumb.appendChild(playerDiv);
                 players[playerDiv.id] = new YT.Player(playerDiv.id, {
