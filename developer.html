@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডেভেলপার পরিচিতি - YouToFlix</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 90%;
+            transition: background-color 0.3s;
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #ff0000;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            color: #ff0000;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+        h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.5rem;
+        }
+        h3 {
+            color: #333;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        p {
+            color: #555;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        .address {
+            text-align: center;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 10px 25px;
+            background-color: #ff0000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #c00;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #0f0f0f;
+            color: #f1f1f1;
+        }
+        body.dark-mode .container {
+            background-color: #212121;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+        body.dark-mode h2,
+        body.dark-mode h3 {
+            color: #f1f1f1;
+        }
+        body.dark-mode p {
+            color: #aaa;
+        }
+        body.dark-mode h3 {
+            border-top: 1px solid #3f3f3f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <img src="i.png" alt="ফারুক আহমেদ" class="avatar">
+        
+        <h1>ডেভেলপার পরিচিতি</h1>
+        <h2>ফারুক আহমেদ</h2>
+        <p class="address">
+            <strong>ঠিকানা:</strong><br>
+            লংগদু, রাঙ্গামাটি,<br>
+            চট্টগ্রাম, বাংলাদেশ
+        </p>
+
+        <h3>এই অ্যাপ্লিকেশনটি তৈরির উদ্দেশ্য</h3>
+        <p>
+            ডিজিটাল বিনোদনের জগতে সবকিছু ছড়িয়ে ছিটিয়ে আছে। আমার লক্ষ্য ছিল এমন একটি প্ল্যাটফর্ম তৈরি করা যেখানে বিভিন্ন দেশের সেরা সিনেমা ও নাটকগুলো এক জায়গায় পাওয়া যাবে। সহজ এবং সুন্দর একটি ইন্টারফেসের মাধ্যমে বিনোদনকে আরও সহজলভ্য করাই ছিল মূল উদ্দেশ্য। YouToFlix শুধু একটি প্রজেক্ট নয়, এটি আমার বিনোদনের প্রতি ভালোবাসার প্রতিফলন। আশা করি, এই অ্যাপ্লিকেশনটি আপনাদের ভালো লাগবে এবং আপনাদের বিনোদনের মুহূর্তগুলোকে আরও আনন্দদায়ক করে তুলবে।
+        </p>
+        
+        <a href="index.html" class="back-button">হোম পেজে ফিরুন</a>
+    </div>
+
+    <script>
+        // এই স্ক্রিপ্টটি মূল পেজের থিম সেটিংস অনুসরণ করে
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>
