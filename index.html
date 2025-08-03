@@ -66,7 +66,6 @@
     .action-btn:hover svg{transform:scale(1.1);}
     .action-btn.love-btn.loved svg{fill:#ff0000;}
     .action-btn.save-btn.saved svg{fill:#007bff;}
-    /* নতুন ক্যাটাগরি লিঙ্কের জন্য CSS */
     .action-btn.category-link{text-decoration:none;border-radius:12px;background-color:rgba(0,0,0,0.05);padding:6px 10px;font-weight:500;font-size:0.75rem;}
     .action-btn.category-link:hover{background-color:rgba(0,0,0,0.1);}
     body.dark-mode .action-btn.category-link{background-color:rgba(255,255,255,0.1);}
@@ -102,6 +101,18 @@
     /* Footer Styles */
     footer{text-align:center;padding:1.5rem;background-color:#f2f2f2;margin-top:2rem}
     body.dark-mode footer{background-color:#212121}
+
+    /* ======================================================== */
+    /* মোবাইল ও ডেস্কটপ বিজ্ঞাপন নিয়ন্ত্রণের জন্য CSS */
+    /* ======================================================== */
+    .ad-container { text-align: center; padding: 1rem 0; }
+    .desktop-ad { display: none; }
+    @media (min-width: 768px) {
+      .desktop-ad { display: inline-block; }
+      .mobile-ad { display: none; }
+    }
+    /* ======================================================== */
+
   </style>
 </head>
 <body>
@@ -115,39 +126,48 @@
   </header>
   
   <nav id="nav-menu">
-      <a href="#" data-category="All">🏠 Home</a>
-      <div class="nav-group">
-          <div class="nav-group-header">Indian Cinema <span class="arrow">▼</span></div>
-          <div class="nav-links">
-              <a href="#" data-category="Bollywood">Bollywood</a><a href="#" data-category="Tollywood">Tollywood</a><a href="#" data-category="Kollywood">Kollywood</a><a href="#" data-category="Mollywood">Mollywood</a><a href="#" data-category="Lollywood">Lollywood</a>
-          </div>
-      </div>
-      <div class="nav-group">
-          <div class="nav-group-header">International Cinema <span class="arrow">▼</span></div>
-          <div class="nav-links">
-              <a href="#" data-category="Hollywood">Hollywood</a><a href="#" data-category="Dhallywood">Dhallywood</a><a href="#" data-category="Chinawood">Chinawood</a><a href="#" data-category="Nollywood">Nollywood</a><a href="#" data-category="K-Cinema">K-Cinema</a><a href="#" data-category="Turkish Cinema">Turkish Cinema</a>
-          </div>
-      </div>
-      <div class="nav-group">
-          <div class="nav-group-header">Drama Series <span class="arrow">▼</span></div>
-          <div class="nav-links">
-              <a href="#" data-category="Bangla Drama">Bangla Drama</a><a href="#" data-category="Urdu Drama">Urdu Drama</a><a href="#" data-category="Hindi Drama">Hindi Drama</a><a href="#" data-category="Turki Drama">Turkish Drama</a>
-          </div>
-      </div>
-      <div class="nav-group">
-          <div class="nav-group-header">Cartoon & Anime <span class="arrow">▼</span></div>
-          <div class="nav-links">
-              <a href="#" data-category="Bangla Carton">Bangla Carton</a><a href="#" data-category="Hindi Carton">Hindi Carton</a><a href="#" data-category="English Carton">English Carton</a>
-          </div>
-      </div>
-      <div class="nav-group">
-          <div class="nav-group-header">Explanation <span class="arrow">▼</span></div>
-          <div class="nav-links">
-              <a href="#" data-category="Bangla Explanation">Bangla</a><a href="#" data-category="Hindi Explanation">Hindi</a>
-          </div>
-      </div>
-      <a href="developer.html">🧑‍💻 About</a>
-      <a href="#" data-category="Saved" id="saved-videos-link">🔖 Saved Videos</a>
+    <!-- নেভিগেশন মেনু অপরিবর্তিত -->
+    <a href="#" data-category="All">🏠 Home</a>
+    <div class="nav-group">
+        <div class="nav-group-header">Indian Cinema <span class="arrow">▼</span></div>
+        <div class="nav-links">
+            <a href="#" data-category="Bollywood">Bollywood</a><a href="#" data-category="Tollywood">Tollywood</a><a href="#" data-category="Kollywood">Kollywood</a><a href="#" data-category="Mollywood">Mollywood</a><a href="#" data-category="Lollywood">Lollywood</a>
+        </div>
+    </div>
+    <div class="nav-group">
+        <div class="nav-group-header">International Cinema <span class="arrow">▼</span></div>
+        <div class="nav-links">
+            <a href="#" data-category="Hollywood">Hollywood</a><a href="#" data-category="Dhallywood">Dhallywood</a><a href="#" data-category="Chinawood">Chinawood</a><a href="#" data-category="Nollywood">Nollywood</a><a href="#" data-category="K-Cinema">K-Cinema</a><a href="#" data-category="Turkish Cinema">Turkish Cinema</a>
+        </div>
+    </div>
+    <div class="nav-group">
+        <div class="nav-group-header">Drama Series <span class="arrow">▼</span></div>
+        <div class="nav-links">
+            <a href="#" data-category="Bangla Drama">Bangla Drama</a><a href="#" data-category="Urdu Drama">Urdu Drama</a><a href="#" data-category="Hindi Drama">Hindi Drama</a><a href="#" data-category="Turki Drama">Turkish Drama</a>
+        </div>
+    </div>
+    <div class="nav-group">
+        <div class="nav-group-header">Cartoon & Anime <span class="arrow">▼</span></div>
+        <div class="nav-links">
+            <a href="#" data-category="Bangla Carton">Bangla Carton</a><a href="#" data-category="Hindi Carton">Hindi Carton</a><a href="#" data-category="English Carton">English Carton</a>
+        </div>
+    </div>
+    <div class="nav-group">
+        <div class="nav-group-header">Explanation <span class="arrow">▼</span></div>
+        <div class="nav-links">
+            <a href="#" data-category="Bangla Explanation">Bangla</a><a href="#" data-category="Hindi Explanation">Hindi</a>
+        </div>
+    </div>
+    <div class="nav-group">
+        <div class="nav-group-header">More Info <span class="arrow">▼</span></div>
+        <div class="nav-links">
+            <a href="about.html" target="_blank">🧑‍💻 About Us</a>
+            <a href="contact.html" target="_blank">📞 Contact Us</a>
+            <a href="privacy.html" target="_blank">🔒 Privacy Policy</a>
+            <a href="disclaimer.html" target="_blank">⚖️ Disclaimer</a>
+        </div>
+    </div>
+    <a href="#" data-category="Saved" id="saved-videos-link">🔖 Saved Videos</a>
   </nav>
 
   <main>
@@ -156,6 +176,12 @@
         <h2 id="video-section-title" class="category-title"></h2>
         <svg id="refresh-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65,6.35C16.2,4.9,14.21,4,12,4c-4.42,0-7.99,3.58-7.99,8s3.57,8,7.99,8c3.73,0,6.84-2.55,7.73-6h-2.08c-0.82,2.33-3.04,4-5.65,4-3.31,0-6-2.69-6-6s2.69-6,6-6c1.66,0,3.14,0.69,4.22,1.78L13,11h7V4L17.65,6.35z"/></svg>
       </div>
+      
+      <div style="margin-bottom: 20px; text-align: center;">
+        <script async="async" data-cfasync="false" src="//pl27333044.profitableratecpm.com/08b721c1393f0857eecb9df7c1d77b6f/invoke.js"></script>
+        <div id="container-08b721c1393f0857eecb9df7c1d77b6f"></div>
+      </div>
+
       <div id="main-video-grid" class="video-grid">
         <script>
             for (let i = 0; i < 10; i++) {
@@ -174,7 +200,43 @@
     </div>
   </main>
   
-  <footer><p>© 2025 YouToFlix. সর্বস্বত্ব সংরক্ষিত।</p></footer>
+  <!-- ======================================================== -->
+  <!-- নতুন ব্যানার বিজ্ঞাপনগুলো এখানে বসানো হয়েছে -->
+  <!-- ======================================================== -->
+  <div class="ad-container">
+    <!-- ডেস্কটপ বিজ্ঞাপনের জন্য কন্টেইনার (728x90) -->
+    <div class="desktop-ad">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '6d0dfd3faee3c7b7d060426e6c79e189',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/6d0dfd3faee3c7b7d060426e6c79e189/invoke.js"></script>
+    </div>
+    
+    <!-- মোবাইল বিজ্ঞাপনের জন্য কন্টেইনার (300x250) -->
+    <div class="mobile-ad">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'fe03e52f11f728543269592eecabce77',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/fe03e52f11f728543269592eecabce77/invoke.js"></script>
+    </div>
+  </div>
+  <!-- ======================================================== -->
+
+  <footer>
+    <p>© 2025 YouToFlix. সর্বস্বত্ব সংরক্ষিত।</p>
+  </footer>
   
   <div id="floating-video-container">
     <button id="close-floating-video">X</button>
@@ -186,6 +248,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
   <script>
+    // আপনার আগের সমস্ত JavaScript কোড এখানে অপরিবর্তিত থাকবে
     const firebaseConfig = {
       apiKey: "AIzaSyD6y6DjbCt9qUMKNZ1oIZYHWAUoishDK4Q",
       authDomain: "youtoflix-2e613.firebaseapp.com",
@@ -312,9 +375,6 @@
         saveBtn.classList.toggle('saved', !isSaved);
     }
 
-    // ===============================================
-    // ===== শুরু: createVideoCard ফাংশনে পরিবর্তন =====
-    // ===============================================
     function createVideoCard(video) {
         const videoCard = document.createElement('div');
         videoCard.className = 'video-card';
@@ -359,12 +419,11 @@
             const saveBtn = videoCard.querySelector('.save-btn');
             saveBtn.onclick = () => handleSave(video, saveBtn);
 
-            // নতুন ক্যাটাগরি লিঙ্কের জন্য Event Listener
             const categoryLink = videoCard.querySelector('.category-link');
             if (categoryLink) {
                 categoryLink.addEventListener('click', (e) => {
                     e.preventDefault();
-                    e.stopPropagation(); // থাম্বনেইলে ক্লিক হওয়া থেকে বিরত রাখতে
+                    e.stopPropagation();
                     setupCategoryView(e.currentTarget.dataset.category);
                 });
             }
@@ -389,9 +448,6 @@
         }
         return videoCard;
     }
-    // =============================================
-    // ===== শেষ: createVideoCard ফাংশনে পরিবর্তন =====
-    // =============================================
     
     function loadMoreVideos(){
         if(isLoading) return;
@@ -473,14 +529,20 @@
         });
 
         navMenu.addEventListener("click", e => {
-            const link = e.target.closest('a[data-category]');
+            const link = e.target.closest('a');
             if(link) {
-                e.preventDefault();
-                setupCategoryView(link.dataset.category);
-                if(navMenu.classList.contains("nav-open")) navMenu.classList.remove("nav-open");
+                if (link.dataset.category) {
+                    e.preventDefault();
+                    setupCategoryView(link.dataset.category);
+                    if(navMenu.classList.contains("nav-open")) navMenu.classList.remove("nav-open");
+                }
             }
             const groupHeader = e.target.closest('.nav-group-header');
-            if(groupHeader) groupHeader.classList.toggle('open');
+            if(groupHeader) {
+                if (!e.target.closest('a')) {
+                     groupHeader.classList.toggle('open');
+                }
+            }
         });
         
         refreshButton.addEventListener("click", () => setupCategoryView(currentCategory));
