@@ -6,12 +6,10 @@
   <title>YouToFlix - আপনার বিনোদনের ঠিকানা</title>
   
   <style>
-    /* General Body and Theme Styles */
+    /* আপনার সকল CSS কোড এখানে অপরিবর্তিত থাকবে */
     body{margin:0;font-family:'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background-color:#f9f9f9;color:#030303;transition:background-color .3s,color .3s}
     body.dark-mode{background-color:#0f0f0f;color:#f1f1f1}
     main{padding:1.5rem;min-height:calc(100vh - 150px)}
-    
-    /* Header Styles */
     header{background-color:#fff;color:#030303;padding:.5rem 1rem;min-height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1002;border-bottom:1px solid rgba(0,0,0,.1)}
     body.dark-mode header{background-color:#212121;border-bottom:1px solid rgba(255,255,255,.1)}
     #menu-icon{width:28px;height:28px;cursor:pointer;fill:#030303}
@@ -23,8 +21,6 @@
     .moon-icon{display:none}
     body.dark-mode .sun-icon{display:none}
     body.dark-mode .moon-icon{display:block}
-    
-    /* Navigation Menu Styles */
     nav{position:fixed;top:0;left:0;width:260px;height:100vh;background:#fff;box-shadow:2px 0 5px rgba(0,0,0,.2);flex-direction:column;justify-content:flex-start;padding-top:70px;transform:translateX(-100%);transition:transform .3s ease-in-out;z-index:1000;overflow-y:auto}
     body.dark-mode nav{background:#212121}
     nav.nav-open{transform:translateX(0)}
@@ -42,8 +38,6 @@
     .nav-group-header.open + .nav-links{display:block}
     #saved-videos-link{position:sticky;bottom:0;background:inherit;border-top:2px solid #e0e0e0;font-weight:bold;}
     body.dark-mode #saved-videos-link{border-top:2px solid #3f3f3f;}
-    
-    /* Main Content & Video Grid Styles */
     .title-container{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #ccc;margin-bottom:1.5rem}
     body.dark-mode .title-container{border-bottom-color:#4d4d4d}
     .category-title{font-size:1.8rem;font-weight:700}
@@ -73,14 +67,10 @@
     .card-actions-right{display:flex;align-items:center;gap:10px;}
     .empty-category-message {grid-column:1 / -1; text-align:center; padding:2rem; background-color:#f2f2f2; border-radius:8px; color:#606060;}
     body.dark-mode .empty-category-message {background-color:#282828;color:#aaa}
-    
-    /* Loading Spinner & Skeletons */
     .spinner{margin:auto; border:4px solid rgba(0,0,0,.1);width:36px;height:36px;border-radius:50%;border-left-color:#ff0000;animation:spin 1s linear infinite}
     @keyframes spin { to { transform: rotate(360deg); } }
-    
     .thumbnail-spinner { position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; border-radius: 50%; border: 4px solid rgba(255, 255, 255, 0.2); border-top-color: #ff0000; animation: spin 1s linear infinite; z-index: 5; }
     body.dark-mode .thumbnail-spinner { border: 4px solid rgba(0, 0, 0, 0.2); border-top-color: #ff0000; }
-
     @keyframes shimmer { 0% { background-position: -1000px 0; } 100% { background-position: 1000px 0; } }
     .shimmer-bg { animation: shimmer 2s infinite linear; background: linear-gradient(to right, #e0e0e0 4%, #f0f0f0 25%, #e0e0e0 36%); background-size: 1000px 100%; }
     body.dark-mode .shimmer-bg { background: linear-gradient(to right, #2c2c2c 4%, #3a3a3a 25%, #2c2c2c 36%); background-size: 1000px 100%; }
@@ -90,32 +80,23 @@
     .skeleton-text { height: 20px; border-radius: 4px; }
     .skeleton-text.short { width: 60%; }
     .loading-more-container { grid-column: 1 / -1; display: flex; justify-content: center; padding: 2rem; }
-
-    /* Floating Video Player Styles */
     #floating-video-container { position: fixed; bottom: 15px; right: 15px; width: 300px; max-width: 80vw; z-index: 2000; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: none; transform: scale(0); transform-origin: bottom right; transition: transform 0.3s ease-in-out; background-color: #000; cursor: pointer; }
     #floating-video-container.show { display: block; transform: scale(1); }
     #floating-video-player { width: 100%; height: auto; aspect-ratio: 16 / 9; }
     #close-floating-video { position: absolute; top: 5px; right: 5px; width: 24px; height: 24px; background-color: rgba(0, 0, 0, 0.6); color: white; border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; z-index: 2001; }
     @media (min-width: 769px) { #floating-video-container { display: none !important; } }
-    
-    /* Footer Styles */
     footer{text-align:center;padding:1.5rem;background-color:#f2f2f2;margin-top:2rem}
     body.dark-mode footer{background-color:#212121}
-
-    /* ======================================================== */
-    /* মোবাইল ও ডেস্কটপ বিজ্ঞাপন নিয়ন্ত্রণের জন্য CSS */
-    /* ======================================================== */
     .ad-container { text-align: center; padding: 1rem 0; }
     .desktop-ad { display: none; }
     @media (min-width: 768px) {
       .desktop-ad { display: inline-block; }
       .mobile-ad { display: none; }
     }
-    /* ======================================================== */
-
   </style>
 </head>
 <body>
+  <!-- আপনার সকল HTML কন্টেন্ট এখানে অপরিবর্তিত থাকবে -->
   <header>
     <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6h18v2H3V6z M3,11h18v2H3v-2z M3,16h18v2H3v-2z"/></svg>
     <h1 id="animated-title">YouToFlix</h1>
@@ -124,9 +105,7 @@
         <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.3,4.84C11.32,4.46,10.22,4.5,9.23,4.9C6.41,6.1,4.94,8.96,5.96,11.77c0.8,2.18,2.89,3.67,5.2,3.84c3.08,0.23,5.83-1.8,6.59-4.6c0.3-1.12,0.1-2.28-0.56-3.26c-0.78-1.17-2.05-1.92-3.41-1.93C13.23,5.85,12.75,5.39,12.3,4.84z"/></svg>
     </div>
   </header>
-  
   <nav id="nav-menu">
-    <!-- নেভিগেশন মেনু অপরিবর্তিত -->
     <a href="#" data-category="All">🏠 Home</a>
     <div class="nav-group">
         <div class="nav-group-header">Indian Cinema <span class="arrow">▼</span></div>
@@ -169,19 +148,16 @@
     </div>
     <a href="#" data-category="Saved" id="saved-videos-link">🔖 Saved Videos</a>
   </nav>
-
   <main>
     <div class="video-section-container">
       <div class="title-container">
         <h2 id="video-section-title" class="category-title"></h2>
         <svg id="refresh-button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.65,6.35C16.2,4.9,14.21,4,12,4c-4.42,0-7.99,3.58-7.99,8s3.57,8,7.99,8c3.73,0,6.84-2.55,7.73-6h-2.08c-0.82,2.33-3.04,4-5.65,4-3.31,0-6-2.69-6-6s2.69-6,6-6c1.66,0,3.14,0.69,4.22,1.78L13,11h7V4L17.65,6.35z"/></svg>
       </div>
-      
       <div style="margin-bottom: 20px; text-align: center;">
         <script async="async" data-cfasync="false" src="//pl27333044.profitableratecpm.com/08b721c1393f0857eecb9df7c1d77b6f/invoke.js"></script>
         <div id="container-08b721c1393f0857eecb9df7c1d77b6f"></div>
       </div>
-
       <div id="main-video-grid" class="video-grid">
         <script>
             for (let i = 0; i < 10; i++) {
@@ -199,12 +175,7 @@
       </div>
     </div>
   </main>
-  
-  <!-- ======================================================== -->
-  <!-- নতুন ব্যানার বিজ্ঞাপনগুলো এখানে বসানো হয়েছে -->
-  <!-- ======================================================== -->
   <div class="ad-container">
-    <!-- ডেস্কটপ বিজ্ঞাপনের জন্য কন্টেইনার (728x90) -->
     <div class="desktop-ad">
       <script type="text/javascript">
         atOptions = {
@@ -217,8 +188,6 @@
       </script>
       <script type="text/javascript" src="//www.highperformanceformat.com/6d0dfd3faee3c7b7d060426e6c79e189/invoke.js"></script>
     </div>
-    
-    <!-- মোবাইল বিজ্ঞাপনের জন্য কন্টেইনার (300x250) -->
     <div class="mobile-ad">
       <script type="text/javascript">
         atOptions = {
@@ -232,12 +201,9 @@
       <script type="text/javascript" src="//www.highperformanceformat.com/fe03e52f11f728543269592eecabce77/invoke.js"></script>
     </div>
   </div>
-  <!-- ======================================================== -->
-
   <footer>
     <p>© 2025 YouToFlix. সর্বস্বত্ব সংরক্ষিত।</p>
   </footer>
-  
   <div id="floating-video-container">
     <button id="close-floating-video">X</button>
     <div id="floating-video-player"></div>
@@ -247,8 +213,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
+  <!-- আপনার মূল এপ্লিকেশনের স্ক্রিপ্ট -->
   <script>
-    // আপনার আগের সমস্ত JavaScript কোড এখানে অপরিবর্তিত থাকবে
+    // আপনার সকল JavaScript কোড এখানে অপরিবর্তিত থাকবে
     const firebaseConfig = {
       apiKey: "AIzaSyD6y6DjbCt9qUMKNZ1oIZYHWAUoishDK4Q",
       authDomain: "youtoflix-2e613.firebaseapp.com",
@@ -258,33 +225,26 @@
       messagingSenderId: "1021832895783",
       appId: "1:1021832895783:web:6bede10ea3e5c2d2505d02"
     };
-
     if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-    
     let allVideosData = [], videosToDisplayList = [], players = {}, currentCategory = "All", videosDisplayedCount = 0, videosPerLoad = 10, isLoading = false;
     let isApiReady = false, isDataReady = false;
-    
     const mainGrid = document.getElementById("main-video-grid");
     const sectionTitle = document.getElementById("video-section-title");
     const navMenu = document.getElementById("nav-menu");
     const refreshButton = document.getElementById("refresh-button");
-    
     let floatingPlayer = null, currentFloatingVideoId = null, originalPlayerContainer = null;
     let intersectionObserver = null;
     const floatingContainer = document.getElementById('floating-video-container');
     const floatingPlayerDiv = document.getElementById('floating-video-player');
     const closeFloatingBtn = document.getElementById('close-floating-video');
-
     const categoryInfo = {
         All: "সকল ভিডিও", Saved: "🔖 আপনার সেভ করা ভিডিও", Hollywood: "Hollywood", Bollywood: "Bollywood", Tollywood: "Tollywood", Dhallywood: "Dhallywood", Kollywood: "Kollywood", Mollywood: "Mollywood", Lollywood: "Lollywood", Chinawood: "Chinawood", Nollywood: "Nollywood", "K-Cinema": "K-Cinema", "Turkish Cinema": "Turkish Cinema", "Bangla Drama": "Bangla Drama", "Urdu Drama": "Urdu Drama", "Hindi Drama": "Hindi Drama", "Turki Drama": "Turkish Drama", "Bangla Carton": "Bangla Carton", "Hindi Carton": "Hindi Carton", "English Carton": "English Carton", "Bangla Explanation": "Bangla Explanation", "Hindi Explanation": "Hindi Explanation"
     };
-
     const getStoredObject = key => { try { const item = localStorage.getItem(key); const parsed = JSON.parse(item || '{}'); return (typeof parsed === 'object' && !Array.isArray(parsed) && parsed !== null) ? parsed : {}; } catch (e) { return {}; } };
     const getStoredArray = key => { try { const item = localStorage.getItem(key); const parsed = JSON.parse(item || '[]'); return Array.isArray(parsed) ? parsed : []; } catch (e) { return []; } };
     const setStoredJson = (key, data) => localStorage.setItem(key, JSON.stringify(data));
     const getVideoId = url => { try { if(!url) return null; return url.includes("watch") ? new URL(url).searchParams.get("v") : new URL(url).pathname.substring(1); } catch (e) { return null; } };
-    
     function destroyFloatingPlayer() {
         if (floatingPlayer) { floatingPlayer.destroy(); floatingPlayer = null; }
         if (originalPlayerContainer) {
@@ -297,7 +257,6 @@
         originalPlayerContainer = null; 
         if(intersectionObserver) intersectionObserver.disconnect();
     }
-    
     function createFloatingPlayer(originalPlayer) {
         if (currentFloatingVideoId) destroyFloatingPlayer();
         const videoId = originalPlayer.getVideoData().video_id;
@@ -310,7 +269,6 @@
         floatingContainer.classList.add('show');
         floatingPlayer = new YT.Player(floatingPlayerDiv, { videoId: videoId, playerVars: { 'rel': 0, 'start': Math.floor(currentTime) }, events: { 'onReady': (event) => { event.target.playVideo(); event.target.getIframe().allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"; }, 'onStateChange': onPlayerStateChange } });
     }
-
     function observeVideoForFloating(player) {
         if (intersectionObserver) intersectionObserver.disconnect();
         const videoCard = player.getIframe().closest('.video-card');
@@ -325,7 +283,6 @@
         }, { threshold: 0.5 }); 
         intersectionObserver.observe(videoCard);
     }
-    
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.PLAYING) {
             if (floatingPlayer && event.target !== floatingPlayer) { destroyFloatingPlayer(); }
@@ -337,7 +294,6 @@
             if (!floatingPlayer && window.innerWidth <= 768) { observeVideoForFloating(event.target); }
         }
     }
-    
     function handleFloatingPlayerDoubleClick() {
         if (!floatingPlayer || !originalPlayerContainer || !currentFloatingVideoId) return;
         const videoId = currentFloatingVideoId;
@@ -351,7 +307,6 @@
             players[playerDivId] = new YT.Player(playerDivId, { videoId: videoId, playerVars: { 'autoplay': 1, 'rel': 0 }, events: { 'onReady': (event) => { event.target.seekTo(currentTime, true); event.target.playVideo(); event.target.getIframe().allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"; }, 'onStateChange': onPlayerStateChange } });
         }, 300);
     }
-
     function handleLove(video, loveBtn, countEl) {
         const lovedVideos = getStoredObject('lovedVideos');
         const isLoved = !!lovedVideos[video.id];
@@ -365,7 +320,6 @@
             countEl.textContent = isLoved ? currentCount - 1 : currentCount + 1;
         }
     }
-
     function handleSave(video, saveBtn) {
         let savedVideos = getStoredArray('savedVideos');
         const isSaved = savedVideos.includes(video.id);
@@ -374,21 +328,17 @@
         setStoredJson('savedVideos', savedVideos);
         saveBtn.classList.toggle('saved', !isSaved);
     }
-
     function createVideoCard(video) {
         const videoCard = document.createElement('div');
         videoCard.className = 'video-card';
         try {
             const videoId = getVideoId(video.link);
             if (!videoId) throw new Error("Invalid video link.");
-            
             const title = video.title || "ভিডিও টাইটেল পাওয়া যায়নি";
             const lovedVideos = getStoredObject('lovedVideos');
             const savedVideos = getStoredArray('savedVideos');
             const categoryName = (video.category && categoryInfo[video.category]) ? categoryInfo[video.category] : '';
-            
             const playerDivId = `player-${video.id}`;
-
             videoCard.innerHTML = `
                 <div class="real-content">
                     <div class="thumbnail-container" data-video-id="${videoId}" data-title="${title.replace(/"/g, '"')}">
@@ -411,14 +361,11 @@
                         </div>
                     </div>
                 </div>`;
-            
             const loveBtn = videoCard.querySelector('.love-btn');
             const loveCountEl = videoCard.querySelector('.love-count');
             loveBtn.onclick = () => handleLove(video, loveBtn, loveCountEl);
-
             const saveBtn = videoCard.querySelector('.save-btn');
             saveBtn.onclick = () => handleSave(video, saveBtn);
-
             const categoryLink = videoCard.querySelector('.category-link');
             if (categoryLink) {
                 categoryLink.addEventListener('click', (e) => {
@@ -427,28 +374,22 @@
                     setupCategoryView(e.currentTarget.dataset.category);
                 });
             }
-
             videoCard.querySelector('.thumbnail-container').addEventListener('click', (e) => {
                 const thumb = e.currentTarget;
                 if(thumb.querySelector('iframe') || thumb.querySelector('.thumbnail-spinner')) return; 
-
                 if (currentFloatingVideoId === videoId) {
                     handleFloatingPlayerDoubleClick();
                     return;
                 }
-                
                 thumb.innerHTML = `<div class="thumbnail-spinner"></div><div id="${playerDivId}" class="video-player"></div>`;
-                
                 players[playerDivId] = new YT.Player(playerDivId, { videoId: videoId, playerVars: { 'autoplay': 1, 'rel': 0 }, events: { 'onReady': (event) => { const spinner = thumb.querySelector('.thumbnail-spinner'); if(spinner) spinner.style.display = 'none'; event.target.getIframe().allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"; }, 'onStateChange': onPlayerStateChange } });
             });
-            
         } catch (error) {
             console.error('Card render failed:', video.link, error);
             videoCard.innerHTML = `<div class="video-info"><h3 class="video-title" style="color:red;">কার্ডটি লোড করা যায়নি।</h3><p style="font-size:0.8rem;color:#999;">সম্ভাব্য কারণ: ভিডিও লিংকটি সঠিক নয়।</p></div>`;
         }
         return videoCard;
     }
-    
     function loadMoreVideos(){
         if(isLoading) return;
         isLoading = true;
@@ -467,7 +408,6 @@
         videosDisplayedCount += videosToLoad.length;
         isLoading = false;
     }
-    
     function setupCategoryView(category) {
         currentCategory = category;
         mainGrid.innerHTML = "";
@@ -487,16 +427,13 @@
         }
         loadMoreVideos();
     }
-    
     function startApp() {
         if (isApiReady && isDataReady) {
             mainGrid.innerHTML = ''; 
             setupCategoryView(currentCategory);
         }
     }
-
     window.onYouTubeIframeAPIReady = function() { isApiReady = true; startApp(); };
-
     document.addEventListener('DOMContentLoaded', () => {
         db.ref("videos").once("value", (snapshot) => {
             allVideosData = [];
@@ -512,7 +449,6 @@
             console.error("Firebase Read Failed:", error);
             mainGrid.innerHTML = `<p class="empty-category-message" style="color:red;">ডেটাবেস থেকে তথ্য আনা সম্ভব হয়নি। অনুগ্রহ করে ইন্টারনেট সংযোগ চেক করুন।</p>`;
         });
-
         window.addEventListener("scroll", () => {
             if (isLoading || videosDisplayedCount >= videosToDisplayList.length) return;
             if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
@@ -527,14 +463,15 @@
                 }, 500);
             }
         });
-
         navMenu.addEventListener("click", e => {
             const link = e.target.closest('a');
             if(link) {
                 if (link.dataset.category) {
                     e.preventDefault();
                     setupCategoryView(link.dataset.category);
-                    if(navMenu.classList.contains("nav-open")) navMenu.classList.remove("nav-open");
+                    if(navMenu.classList.contains("nav-open")) {
+                        navMenu.classList.remove("nav-open");
+                    }
                 }
             }
             const groupHeader = e.target.closest('.nav-group-header');
@@ -544,14 +481,11 @@
                 }
             }
         });
-        
         refreshButton.addEventListener("click", () => setupCategoryView(currentCategory));
-        
         const themeToggle=document.getElementById("theme-toggle"), body=document.body;
         const savedTheme = localStorage.getItem("theme");
         if (savedTheme === "dark") body.classList.add("dark-mode");
         themeToggle.addEventListener("click",()=>{body.classList.toggle("dark-mode");localStorage.setItem("theme",body.classList.contains("dark-mode")?"dark":"light")});
-
         const menuIcon=document.getElementById("menu-icon");
         menuIcon.addEventListener("click",()=>navMenu.classList.toggle("nav-open"));
         document.addEventListener("click", e => {
@@ -559,10 +493,29 @@
             navMenu.classList.remove("nav-open");
           }
         });
-
         closeFloatingBtn.addEventListener('click', (e) => { e.stopPropagation(); destroyFloatingPlayer(); });
         floatingContainer.addEventListener('dblclick', handleFloatingPlayerDoubleClick);
     });
   </script>
+
+  <!-- ============================================= -->
+  <!-- ===== Service Worker Registration Script ==== -->
+  <!-- ============================================= -->
+  <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            // আপনার রিপোজিটরির নামের সাথে মিলিয়ে সঠিক পাথ ব্যবহার করুন
+            navigator.serviceWorker.register('/YouToFlix/sw.js')
+                .then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                })
+                .catch(err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+        });
+    }
+  </script>
+  <!-- ============================================= -->
+
 </body>
 </html>
