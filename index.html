@@ -286,7 +286,9 @@
     const setStoredJson = (key, data) => localStorage.setItem(key, JSON.stringify(data));
     const getVideoId = url => { try { if(!url) return null; return url.includes("watch") ? new URL(url).searchParams.get("v") : new URL(url).pathname.substring(1); } catch (e) { return null; } };
     
-    // Floating Player Functions
+    // ==========================================================
+    // ===== শুরু: চূড়ান্তভাবে সংশোধিত প্লেয়ার ম্যানেজমেন্ট ফাংশন =====
+    // ==========================================================
     function destroyFloatingPlayer() {
         if (floatingPlayer) {
             floatingPlayer.destroy();
@@ -295,11 +297,12 @@
         if (originalPlayerContainer) {
             const videoId = originalPlayerContainer.dataset.videoId;
             const title = originalPlayerContainer.dataset.title;
+            // শুধু থাম্বনেইলটি ফিরিয়ে আনা হচ্ছে, প্লেয়ার অবজেক্ট এখানে ডিলিট করা হচ্ছে না
             originalPlayerContainer.innerHTML = `<img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="${title}" loading="lazy" onerror="this.parentElement.innerHTML = '<p style=\'color:red;padding:1rem;\'>থাম্বনেইল লোড হয়নি।</p>';">`;
         }
         floatingContainer.classList.remove('show');
         currentFloatingVideoId = null;
-        originalPlayerContainer = null;
+        originalPlayerContainer = null; // মূল কন্টেইনারের রেফারেন্স মুছে ফেলা হচ্ছে
         if(intersectionObserver) intersectionObserver.disconnect();
     }
     
@@ -311,10 +314,18 @@
         
         currentFloatingVideoId = videoId;
         originalPlayerContainer = originalPlayer.getIframe().closest('.thumbnail-container');
-
-        originalPlayer.pauseVideo();
-        originalPlayer.getIframe().style.display = 'none';
         
+        // --- মূল পরিবর্তন এখানে ---
+        // মূল প্লেয়ারটিকে destroy করা হচ্ছে এবং players তালিকা থেকে মুছে ফেলা হচ্ছে
+        const originalPlayerId = originalPlayer.getIframe().id;
+        if (players[originalPlayerId]) {
+            originalPlayer.destroy();
+            delete players[originalPlayerId];
+        }
+        
+        // DOM-এ শুধু থাম্বনেইলটি দেখানো হচ্ছে
+        originalPlayerContainer.innerHTML = `<img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="Video thumbnail" loading="lazy">`;
+
         floatingContainer.classList.add('show');
         
         floatingPlayer = new YT.Player(floatingPlayerDiv, {
@@ -324,8 +335,9 @@
                 'start': Math.floor(currentTime) 
             },
             events: {
-                'onReady': function(event) {
-                    event.target.playVideo(); 
+                'onReady': (event) => {
+                    event.target.playVideo();
+                    event.target.getIframe().allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
                 },
                 'onStateChange': onPlayerStateChange
             }
@@ -340,38 +352,39 @@
 
         intersectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // ভিডিওটি দৃশ্যমান না থাকলে এবং চালু থাকলে ফ্লোটিং প্লেয়ার তৈরি হবে
                 if (!entry.isIntersecting && player.getPlayerState() === YT.PlayerState.PLAYING) {
                     createFloatingPlayer(player);
                     intersectionObserver.disconnect();
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.5 }); // ৫০% এর কম দৃশ্যমান হলে ফ্লোটিং হবে
 
         intersectionObserver.observe(videoCard);
     }
     
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.PLAYING) {
+            // যদি একটি ফ্লোটিং প্লেয়ার চালু থাকে এবং ব্যবহারকারী অন্য ভিডিও প্লে করে
             if (floatingPlayer && event.target !== floatingPlayer) {
                 destroyFloatingPlayer();
             }
+            
+            // অন্য সকল প্লেয়ারকে পজ করা
             for (const playerId in players) {
                 if (players[playerId] && players[playerId] !== event.target && typeof players[playerId].pauseVideo === 'function') {
-                    players[playerId].pauseVideo();
-                }
-            }
-            if (floatingPlayer && event.target === floatingPlayer) {
-                 for (const playerId in players) {
-                    if (players[playerId] && typeof players[playerId].pauseVideo === 'function') {
+                    try {
                         players[playerId].pauseVideo();
+                    } catch (e) {
+                        // যদি কোনো প্লেয়ারে সমস্যা হয়, তবে তালিকা থেকে বাদ দেওয়া হবে
+                        delete players[playerId];
                     }
-                 }
-            }
-            if (!floatingPlayer && window.innerWidth <= 768) {
-                const isOriginalPlayer = event.target.getIframe().closest('.video-card');
-                if (isOriginalPlayer) {
-                    observeVideoForFloating(event.target);
                 }
+            }
+            
+            // মোবাইল ডিভাইসে স্ক্রল করলে ফ্লোটিং প্লেয়ার চালু করার লজিক
+            if (!floatingPlayer && window.innerWidth <= 768) {
+                observeVideoForFloating(event.target);
             }
         }
     }
@@ -382,7 +395,7 @@
         const videoId = currentFloatingVideoId;
         const currentTime = floatingPlayer.getCurrentTime();
         const targetContainer = originalPlayerContainer;
-        const playerDivId = `player-${videoId}`;
+        const playerDivId = `player-${videoId}-${Date.now()}`; // ইউনিক আইডি নিশ্চিত করা হচ্ছে
         
         destroyFloatingPlayer();
         targetContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -397,12 +410,16 @@
                     'onReady': (event) => {
                         event.target.seekTo(currentTime, true);
                         event.target.playVideo();
+                        event.target.getIframe().allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
                     },
                     'onStateChange': onPlayerStateChange
                 }
             });
         }, 300);
     }
+    // ========================================================
+    // ===== শেষ: চূড়ান্তভাবে সংশোধিত প্লেয়ার ম্যানেজমেন্ট ফাংশন =====
+    // ========================================================
 
     // Core App Functions
     function handleLove(video, loveBtn, countEl) {
@@ -438,6 +455,8 @@
             const title = video.title || "ভিডিও টাইটেল পাওয়া যায়নি";
             const lovedVideos = getStoredObject('lovedVideos');
             const savedVideos = getStoredArray('savedVideos');
+            
+            const playerDivId = `player-${video.id}`;
 
             videoCard.innerHTML = `
                 <div class="real-content">
@@ -475,7 +494,6 @@
                     return;
                 }
                 
-                const playerDivId = `player-${video.id}`;
                 thumb.innerHTML = `
                     <div class="thumbnail-spinner"></div>
                     <div id="${playerDivId}" class="video-player"></div>
@@ -488,6 +506,7 @@
                         'onReady': (event) => {
                             const spinner = thumb.querySelector('.thumbnail-spinner');
                             if(spinner) spinner.style.display = 'none';
+                            event.target.getIframe().allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
                         },
                         'onStateChange': onPlayerStateChange
                     }
@@ -527,7 +546,7 @@
     function setupCategoryView(category) {
         currentCategory = category;
         mainGrid.innerHTML = "";
-        players = {};
+        players = {}; // প্লেয়ার তালিকা রিসেট করা হচ্ছে
         videosDisplayedCount = 0;
         sectionTitle.innerText = categoryInfo[category] || "ভিডিওসমূহ";
         if(floatingPlayer) destroyFloatingPlayer();
@@ -631,4 +650,4 @@
     });
   </script>
 </body>
-</html>
+</html>```
